@@ -1,16 +1,18 @@
 import React from "react";
-import {View,StyleSheet,Text} from "react-native";
-export default function Categoria({Svg,Nombre,Seleccionado}) {
+import {View,StyleSheet,Text, TouchableOpacity} from "react-native";
+export default function Categoria({Svg,Nombre,Seleccionado,changePet,current}) {
     return (
+        <TouchableOpacity onPress={() => current === 'Perros' ? changePet("Gatos") : changePet("Perros")}>
         <View style={
             {...styles.container,
-            opacity: Seleccionado ? 1 : 0.6
+            opacity: current === Nombre ? 1 : 0.6
             }}>
             <View style={styles.circle}>
                 <Svg/>
             </View>
             <Text style={{color:"white"}}>{Nombre}</Text>
         </View>
+        </TouchableOpacity>
     )
 }
 

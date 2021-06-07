@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import Categoria from "./Categoria";
 import DogPicture from "../assets/perros.svg";
 import CatPicture from "../assets/gatos.svg";
-export default function Categorias() {
+export default function Categorias({changePet,current}) {
     return (
         <View>
             <Text style={{
@@ -11,8 +11,8 @@ export default function Categorias() {
                 color: "#0E172C",
                 }}>Categorías de mascotas</Text>
             <View style={styles.container}>
-                <Categoria Seleccionado Nombre="Perros" Svg={DogPicture} />
-                <Categoria Nombre="Gatos" Svg={CatPicture} />
+                <Categoria changePet={changePet} current={current} Nombre="Perros" Svg={DogPicture} />
+                <Categoria changePet={changePet} current={current} Nombre="Gatos" Svg={CatPicture} />
             </View>
         </View>
 
