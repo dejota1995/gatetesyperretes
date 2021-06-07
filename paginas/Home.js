@@ -1,7 +1,7 @@
 import React , {useEffect,useState} from "react";
-import {Text} from "react-native";
+import {Text,ScrollView,StyleSheet} from "react-native";
 import Fire from "../database/fire";
-import Categoria from "../componentes/Categoria";
+import Categorias from "../componentes/Categorias";
 const {firebase} = Fire;
 export default function Home({navigation}) {
     const [isAuth,setAuth] = useState(false)
@@ -14,9 +14,21 @@ export default function Home({navigation}) {
         }
     },[isAuth])
     return (
-    <>
-    <Text>{isAuth ? 'Logeado' : 'Nope'}</Text> 
-    <Categoria/>
-    </>
+    <ScrollView style={{paddingLeft:24,paddingRight:24 , backgroundColor:"#FEC7D7"}}>
+    <Text style={{
+        ...styles.title,
+        color: "#0E172C"
+        }}>Adopta una adorable mascota</Text> 
+    <Categorias/>
+    </ScrollView>
+   
     )
 }
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize:24,
+        fontWeight:"bold",
+        marginTop:40
+    }
+})

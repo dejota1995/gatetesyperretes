@@ -1,13 +1,15 @@
 import React from "react";
 import {View,StyleSheet,Text} from "react-native";
-import DogPicture from "../assets/perros.svg";
-export default function Categoria() {
+export default function Categoria({Svg,Nombre,Seleccionado}) {
     return (
-        <View style={styles.container}>
+        <View style={
+            {...styles.container,
+            opacity: Seleccionado ? 1 : 0.6
+            }}>
             <View style={styles.circle}>
-                <DogPicture/>
+                <Svg/>
             </View>
-            <Text style={{color:"white"}}>Perros</Text>
+            <Text style={{color:"white"}}>{Nombre}</Text>
         </View>
     )
 }
@@ -17,10 +19,10 @@ const styles = StyleSheet.create({
         width:156,
         height:80,
         borderRadius:8,
-        backgroundColor:"#0E172C"
-        ,
+        backgroundColor:"#0E172C",
         alignItems:"center",
-        flexDirection:"row"
+        flexDirection:"row",
+        marginRight:40
     },
     circle: {
         width:64,
@@ -28,6 +30,8 @@ const styles = StyleSheet.create({
         borderRadius:64 / 2,
         backgroundColor:"#85D1CE",
         marginLeft:7,
-        marginRight:15
+        marginRight:15,
+        justifyContent:"center",
+        alignItems:"center"
     }
 })

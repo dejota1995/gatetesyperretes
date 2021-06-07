@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c450cdb4-1d75-4f1d-b8e1-0c8ad9236eb9" name="Default Changelist" comment="" />
+    <list default="true" id="c450cdb4-1d75-4f1d-b8e1-0c8ad9236eb9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/componentes/Categoria.js" beforeDir="false" afterPath="$PROJECT_DIR$/componentes/Categoria.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paginas/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/paginas/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
