@@ -1,14 +1,14 @@
 import React from "react";
 import {View , StyleSheet , Text} from "react-native";
 import Papo from "../assets/Papo.svg";
-//TODO: Crear la tarjeta de mascota
+
 export default function TarjetaMascota({mascota}) {
     return (
         <View style={styles.container}>
             <Papo style={styles.picture}/>
             <View style={styles.dogInfo}>
-            <Text style={styles.text}>{mascota.nombre}</Text>
-            <Text style={styles.subtext}>{mascota.raza}</Text>
+            <Text style={styles.text}>{mascota.name}</Text>
+            <Text style={styles.subtext}>{mascota.race}</Text>
             </View>
 
             

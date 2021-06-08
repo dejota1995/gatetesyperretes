@@ -1,5 +1,6 @@
 import React from "react";
 import {View,StyleSheet,Text, TouchableOpacity} from "react-native";
+
 export default function Categoria({Svg,Nombre,Seleccionado,changePet,current}) {
     return (
         <TouchableOpacity onPress={() => current === 'Perros' ? changePet("Gatos") : changePet("Perros")}>

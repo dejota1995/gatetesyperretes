@@ -1,6 +1,7 @@
 import React from "react";
 import TarjetaMascota from "./TarjetaMascota";
 import {StyleSheet,View} from "react-native";
+
 export default function TarjetasMascotas({mascotas}) {
     return (
         <View style={styles.container}>

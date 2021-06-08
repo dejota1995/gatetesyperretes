@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+
 const keys = {
         apiKey: "AIzaSyA9a_tIOX7uHiyswAcyYANxjeKsP4gxN3Q",
         authDomain: "walk-dogs-9cf04.firebaseapp.com",

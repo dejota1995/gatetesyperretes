@@ -3,7 +3,9 @@ import {Text,View, StyleSheet} from "react-native";
 import CustomButton from "../componentes/CustomButton";
 import TextInput from "../componentes/TextInput";
 import Fire from "../database/fire";
+
 const {firebase} = Fire;
+
 export default function Registro({navigation}) {
     const [name,setName] = useState("")
    const [email,setEmail] = useState("")

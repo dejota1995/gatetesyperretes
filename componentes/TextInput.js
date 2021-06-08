@@ -1,12 +1,12 @@
 import React , {useState} from "react";
 import {View,StyleSheet,Text,TextInput as OGTextInput } from "react-native";
 
-export default function TextInput({nombre,onChangeText, text , placeholder,secureTextEntry}) {
+export default function TextInput({inputStyle,nombre,onChangeText, text , placeholder,secureTextEntry,lines,moreStyles}) {
     return (
       <View>
           <Text style={styles.label}>{nombre}</Text>
-      <View style={styles.container}>
-        <OGTextInput secureTextEntry={secureTextEntry} placeholder={placeholder} value={text} style={styles.textInput} onChangeText={onChangeText}>
+          <View style={{...styles.container, ...moreStyles}}>
+        <OGTextInput  numberOfLines={lines ?? 1} secureTextEntry={secureTextEntry} placeholder={placeholder} value={text} style={styles.textInput} onChangeText={onChangeText}>
 
         </OGTextInput>
       </View>

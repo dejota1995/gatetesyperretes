@@ -3,36 +3,36 @@ import {Text,ScrollView,StyleSheet} from "react-native";
 import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
-const mascotitas= [
-    {
-        nombre:"bonano",
-        raza:"mis huevos",
-        tipo:"perro"
-    } , 
-    {
-        nombre:"bonanin",
-        raza:"mi huevin",
-        tipo:"gato"
-    },
-    
-]
-const {firebase} = Fire;
+
+
+
+const {firebase,db} = Fire;
+
+function getPets() {
+    const pets = []
+    db.collection("pets").onSnapshot(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            const {name,race,type} = doc.data()
+            pets.push({
+                id:doc.id,
+                name,
+                race,
+                type
+            })
+        })
+    })
+    return pets
+}
+
 export default function Home({navigation}) {
-    const [isAuth,setAuth] = useState(false)
-    const [selected,doSelection] = useState("Gatos")
-    const perros = mascotitas.filter(mascota => mascota.tipo === 'perro')
-    const gatos = mascotitas.filter(mascota => mascota.tipo === 'gato')
-    const setActive = (mascota) => doSelection(mascota)
-
+    const [pets,setPets] = useState([])
     useEffect(() => {
-        const user = firebase.auth().currentUser;
-        if(user) {
-            setAuth(true)
-        } else {
-            navigation.navigate('InicioDeSesión');
-        }
-    },[isAuth])
-
+        const Pets = getPets()
+        setPets(Pets)
+    }, [])
+    const [selected,doSelection] = useState("Gatos")
+ 
+    const setActive = (mascota) => doSelection(mascota)
 
     return (
     <ScrollView style={{paddingLeft:24,paddingRight:24 , backgroundColor:"#FEC7D7"}}>
@@ -41,7 +41,12 @@ export default function Home({navigation}) {
         color: "#0E172C"
         }}>Adopta una adorable mascota</Text> 
     <Categorias changePet={setActive} current={selected}/>
-    <TarjetasMascotas mascotas={selected === 'Perros' ? perros : gatos}/>
+    {
+        pets && <TarjetasMascotas mascotas={
+            selected === "Gatos" ? pets.filter(pet => pet.type.item === 'gato') : pets.filter(pet => pet.type.item === 'perro')
+        }/>
+    }
+    
     </ScrollView>
    
     )

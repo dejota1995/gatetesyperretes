@@ -3,7 +3,9 @@ import {Text,View, StyleSheet} from "react-native";
 import CustomButton from "../componentes/CustomButton";
 import TextInput from "../componentes/TextInput";
 import Fire from "../database/fire";
+
 const {firebase} = Fire
+
 export default function InicioSesion({navigation}) {
    const [email,setEmail] = useState("")
    const [password,setPassword] = useState("")
@@ -43,6 +45,9 @@ export default function InicioSesion({navigation}) {
             </Text>
             <Text style={{marginTop:20}}>
                 <Text onPress={() => navigation.navigate("Home")} style={{color: "green"}}>vete a adios</Text>
+            </Text>
+            <Text style={{marginTop:20}}>
+                <Text onPress={() => navigation.navigate("CrearMascota")} style={{color: "green"}}>vete a crearMascota</Text>
             </Text>
         </View>
 

@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import InicioSesion from "./paginas/InicioSesion";
 import Registro from "./paginas/registro";
 import Home from "./paginas/Home";
+import CrearMascota from "./paginas/CrearMascota";
+
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -23,6 +24,10 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
+        ></Stack.Screen>
+          <Stack.Screen
+          name="CrearMascota"
+          component={CrearMascota}
         ></Stack.Screen>
       </Stack.Navigator>
 

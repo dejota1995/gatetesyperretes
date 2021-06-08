@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import Categoria from "./Categoria";
 import DogPicture from "../assets/perros.svg";
 import CatPicture from "../assets/gatos.svg";
+
 export default function Categorias({changePet,current}) {
     return (
         <View>
