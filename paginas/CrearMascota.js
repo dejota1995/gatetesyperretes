@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet,ScrollView } from "react-native";
+import { Text, View, StyleSheet,ScrollView,Image } from "react-native";
 import useAuth from "../hooks/useAuth";
 import TextInput from "../componentes/TextInput";
 import CustomPicker from "../componentes/Picker";
@@ -7,7 +7,7 @@ import {xorBy} from "lodash";
 import SelectBox from "react-native-multi-selectbox";
 import CustomButton from "../componentes/CustomButton";
 import Fire from "../database/fire";
-
+import {askCameraPermissions,pickImage} from "../helpers/upload";
 const {db} = Fire;
 
 export default function CrearMascota() {
@@ -18,6 +18,21 @@ export default function CrearMascota() {
     const [description,setDescription] = useState("")
     const [petType,setPetType] = useState("")
     const [age,setAge] = useState("")
+    const [pictureInfo,setPicture] = useState({})
+    const [picUri,setPicUri] = useState("")
+    
+    async function pictureHandler() {
+        const gotPermissions = askCameraPermissions()
+        if(!gotPermissions) {
+            return
+        }
+        const uri = await pickImage()
+        if(uri) {
+            setPicUri(uri)
+          
+        }
+    }
+
     function insertarMascota() {
         const datos = {
             name:name,
@@ -64,7 +79,13 @@ export default function CrearMascota() {
     ]
     return (
         <ScrollView contentContainerStyle={styles.container}>
+
+            {picUri ?
+                      <Image source={{uri:picUri}} style={{width:200,height:200,marginBottom:20}}>
             
+                      </Image>
+                    : null
+            }
             <TextInput placeholder="ej: Coco" onChangeText={setName} nombre="Nombre de tu mascota" />
             <TextInput placeholder="ej: YorkShire" onChangeText={setRace} nombre="Raza de tu mascota" />
             
@@ -95,7 +116,7 @@ export default function CrearMascota() {
                 onChange={onChange()}
                 labelStyle={{marginTop:20}}
             />
-            <CustomButton onPress={() => insertarMascota()} moreStyles={{marginTop:10}} label="Crear"/>
+            <CustomButton onPress={() => pictureHandler() } moreStyles={{marginTop:15}} label="Crear"/>
         </ScrollView>
     )
 
@@ -113,6 +134,8 @@ export default function CrearMascota() {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center"
+        alignItems: "center",
+        paddingTop:20,
+        paddingBottom:20
     }
 })

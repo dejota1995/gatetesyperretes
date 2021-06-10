@@ -6,8 +6,8 @@ export default function TextInput({inputStyle,nombre,onChangeText, text , placeh
       <View>
           <Text style={styles.label}>{nombre}</Text>
           <View style={{...styles.container, ...moreStyles}}>
-        <OGTextInput  numberOfLines={lines ?? 1} secureTextEntry={secureTextEntry} placeholder={placeholder} value={text} style={styles.textInput} onChangeText={onChangeText}>
-
+        <OGTextInput numberOfLines={lines ?? 1} secureTextEntry={secureTextEntry} placeholder={placeholder} value={text} style={styles.textInput} onChangeText={onChangeText}>
+      
         </OGTextInput>
       </View>
       </View>

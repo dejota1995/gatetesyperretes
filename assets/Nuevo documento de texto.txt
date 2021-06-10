@@ -1,5 +1,0 @@
-Hola MariEli, espero que estés bien. Te comento, he decidido cambiar una parte del proyecto y en vez de ser una app para pasear perros, será una app para adoptar perros y gatos. Igualmente será una app para Android, y tendrá:
-
-- Registro de un usuario.
-- LogIn de usuario registrado.
-- 
