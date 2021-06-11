@@ -20,3 +20,12 @@ export async function pickImage() {
         return result.uri
     }
 }
+
+export async function uploadImage(uri,firebase,imgname) {
+    const response = await fetch(uri)
+    const blob = await response.blob()
+    const ref = firebase.storage().ref().child(`images/${imgname}`)
+    const uploadTask = await ref.put(blob)
+    const imageUrl = ref.getDownloadURL();
+    return imageUrl
+}

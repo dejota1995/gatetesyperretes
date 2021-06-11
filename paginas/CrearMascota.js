@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet,ScrollView,Image } from "react-native";
+import React, { useState,useEffect } from "react";
+import { Text, View, StyleSheet,ScrollView,Image,Alert } from "react-native";
 import useAuth from "../hooks/useAuth";
 import TextInput from "../componentes/TextInput";
 import CustomPicker from "../componentes/Picker";
@@ -7,19 +7,21 @@ import {xorBy} from "lodash";
 import SelectBox from "react-native-multi-selectbox";
 import CustomButton from "../componentes/CustomButton";
 import Fire from "../database/fire";
-import {askCameraPermissions,pickImage} from "../helpers/upload";
+import {askCameraPermissions,pickImage,uploadImage} from "../helpers/upload";
 const {db} = Fire;
 
 export default function CrearMascota() {
     const isAuth = useAuth();
+    //
     const [name, setName] = useState("")
     const [race, setRace] = useState("")
     const [selectedRaces,setSelectedRaces] = useState([])
     const [description,setDescription] = useState("")
     const [petType,setPetType] = useState("")
     const [age,setAge] = useState("")
-    const [pictureInfo,setPicture] = useState({})
     const [picUri,setPicUri] = useState("")
+    const [uploadedPicURL,setUploadedPicURL] = useState("")
+    //
     
     async function pictureHandler() {
         const gotPermissions = askCameraPermissions()
@@ -27,28 +29,52 @@ export default function CrearMascota() {
             return
         }
         const uri = await pickImage()
-        if(uri) {
-            setPicUri(uri)
-          
+        if(!uri) {
+            return false
         }
-    }
+        setPicUri(uri)
+       }
 
-    function insertarMascota() {
+       async function pictureHandlerStep2() {
+           try {
+            const reference = await uploadImage(picUri,Fire.firebase,Date.now())
+            setUploadedPicURL(reference)
+            
+           } catch (error) {
+               console.log(error)
+           }
+      
+       }
+
+    async function insertarMascota() {
+      
         const datos = {
             name:name,
             race:race,
             personality:selectedRaces,
             description:description,
             type:petType,
-            age:age
+            age:age,
+            petPicture: uploadedPicURL
         }
-        db.collection("pets").add(datos)
-        .then(() => {
-            alert("añadido")
-        })
-        .catch(error => {
-            alert(error.code)
-        })
+        try {
+            await db.collection("pets").add(datos)
+            Alert.alert("Mascota insertada con éxito")
+            
+            setName("")
+            setRace("")
+            setSelectedRaces([])
+            setDescription("")
+            setPetType("")
+            setAge("")
+            setPicUri("")
+            setUploadedPicURL("")
+
+        } catch (error) {
+            Alert.alert("Error creando mascota")
+        }
+        
+       
     }
     const raceOptions = [
         {
@@ -75,8 +101,26 @@ export default function CrearMascota() {
             item: "Dominante",
             id: "Dominante"
         },
+        {
+            item: "Somnoliento",
+            id: "Somnoliento"
+        },
+        {
+            item: "Obediente",
+            id: "Obediente"
+        },
+        {
+            item: "Vago",
+            id: "Vago"
+        },
 
     ]
+    useEffect(() => {
+        if(name) {
+            insertarMascota()
+        }
+        
+    },[uploadedPicURL])
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
@@ -111,12 +155,15 @@ export default function CrearMascota() {
 
             <SelectBox
                 label="Tipo de mascota"
-                options={[{item:"perro",id:"perro"} , {item:"gato",id:"gato"}]}
+                options={[{item:"Perro",id:"Perro"} , {item:"Gato",id:"Gato"}]}
                 value={petType}
                 onChange={onChange()}
                 labelStyle={{marginTop:20}}
             />
-            <CustomButton onPress={() => pictureHandler() } moreStyles={{marginTop:15}} label="Crear"/>
+            <Text style={styles.uploadText} onPress={pictureHandler}>Sube una foto de tu mascota</Text>
+
+            <CustomButton onPress={() => pictureHandlerStep2() } moreStyles={{marginTop:15}} label="Crear"/>
+            
         </ScrollView>
     )
 
@@ -137,5 +184,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingTop:20,
         paddingBottom:20
+    },
+    uploadText: {
+        marginTop:20,
+        color:"black",
+        fontSize:17,
+        backgroundColor:"grey",
+        borderWidth:3,
+        borderColor:"rgba(0,0,0,0.3)",
+        borderRadius:4,
+        padding:10
     }
 })

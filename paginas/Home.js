@@ -1,5 +1,5 @@
 import React , {useEffect,useState} from "react";
-import {Text,ScrollView,StyleSheet} from "react-native";
+import {Text,ScrollView,StyleSheet,Image} from "react-native";
 import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
@@ -12,12 +12,13 @@ function getPets() {
     const pets = []
     db.collection("pets").onSnapshot(querySnapshot => {
         querySnapshot.forEach(doc => {
-            const {name,race,type} = doc.data()
+            const {name,race,type,petPicture} = doc.data()
             pets.push({
                 id:doc.id,
                 name,
                 race,
-                type
+                type,
+                petPicture
             })
         })
     })
@@ -43,7 +44,7 @@ export default function Home({navigation}) {
     <Categorias changePet={setActive} current={selected}/>
     {
         pets && <TarjetasMascotas mascotas={
-            selected === "Gatos" ? pets.filter(pet => pet.type.item === 'gato') : pets.filter(pet => pet.type.item === 'perro')
+            selected === "Gatos" ? pets.filter(pet => pet.type.item === 'Gato') : pets.filter(pet => pet.type.item === 'Perro')
         }/>
     }
     
