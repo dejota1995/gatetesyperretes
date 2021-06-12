@@ -7,7 +7,7 @@ import InicioSesion from "./paginas/InicioSesion";
 import Registro from "./paginas/registro";
 import Home from "./paginas/Home";
 import CrearMascota from "./paginas/CrearMascota";
-
+import Mascota from "./paginas/Mascota";
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -28,6 +28,10 @@ export default function App() {
           <Stack.Screen
           name="CrearMascota"
           component={CrearMascota}
+        ></Stack.Screen>
+          <Stack.Screen
+          name="Mascota"
+          component={Mascota}
         ></Stack.Screen>
       </Stack.Navigator>
 

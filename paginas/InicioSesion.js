@@ -49,6 +49,9 @@ export default function InicioSesion({navigation}) {
             <Text style={{marginTop:20}}>
                 <Text onPress={() => navigation.navigate("CrearMascota")} style={{color: "green"}}>vete a crearMascota</Text>
             </Text>
+            <Text style={{marginTop:20}}>
+                <Text onPress={() => navigation.navigate("Mascota")} style={{color: "green"}}>vete a Mascota</Text>
+            </Text>
         </View>
 
     )
