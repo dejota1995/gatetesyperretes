@@ -4,6 +4,7 @@ import Cariñoso from "../assets/cariñoso.svg"
 import Nervioso from "../assets/nervioso.svg"
 import Jugueton from "../assets/jugueton.svg";
 import Mimoso from "../assets/mimoso.svg";
+import Tranquilo from "../assets/tranquilo.svg";
 export default function TarjetaPersonalidad({personalidad}) {
     return (
         <View style={styles.container}>
@@ -13,14 +14,14 @@ export default function TarjetaPersonalidad({personalidad}) {
             {
                 personalidad === 'Nervioso' && <Nervioso/>
             }
-
             {
-                personalidad === 'Jugueton' && <Jugueton/>
+                personalidad === 'Juguetón' && <Jugueton/>
             }
             {   
-            
                 personalidad === 'Mimoso' && <Mimoso/>
-            
+            }
+            {
+                personalidad === 'Tranquilo' && <Tranquilo/>
             }
             <Text style={{marginTop:10, fontWeight:'bold'}}>{personalidad}</Text>
         </View>

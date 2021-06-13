@@ -2,12 +2,12 @@ import React from "react";
 import TarjetaMascota from "./TarjetaMascota";
 import {StyleSheet,View} from "react-native";
 
-export default function TarjetasMascotas({mascotas}) {
+export default function TarjetasMascotas({mascotas,navigation}) {
     return (
         <View style={styles.container}>
             {
                   mascotas.map((mascota , index) => {
-                    return <TarjetaMascota key={index} mascota={mascota}></TarjetaMascota>
+                    return <TarjetaMascota navigation={navigation} key={index} mascota={mascota}></TarjetaMascota>
                 })
             }
         </View>
@@ -19,7 +19,9 @@ export default function TarjetasMascotas({mascotas}) {
 const styles = StyleSheet.create({
 container: {
     flexDirection:"row",
-    marginTop:18
+    marginTop:18,
+    flex:1,
+    flexWrap:'wrap'
   
 }
 })

@@ -8,10 +8,10 @@ import SelectBox from "react-native-multi-selectbox";
 import CustomButton from "../componentes/CustomButton";
 import Fire from "../database/fire";
 import {askCameraPermissions,pickImage,uploadImage} from "../helpers/upload";
-const {db} = Fire;
+const {db,firebase} = Fire;
 
-export default function CrearMascota() {
-    const isAuth = useAuth();
+export default function CrearMascota({navigation}) {
+    const [isAuth,email] = useAuth();
     //
     const [name, setName] = useState("")
     const [race, setRace] = useState("")
@@ -55,7 +55,8 @@ export default function CrearMascota() {
             description:description,
             type:petType,
             age:age,
-            petPicture: uploadedPicURL
+            petPicture: uploadedPicURL,
+            owner:email
         }
         try {
             await db.collection("pets").add(datos)
@@ -123,7 +124,7 @@ export default function CrearMascota() {
     },[uploadedPicURL])
     return (
         <ScrollView contentContainerStyle={styles.container}>
-
+            <Text>{email ?? 'None'}</Text>
             {picUri ?
                       <Image source={{uri:picUri}} style={{width:200,height:200,marginBottom:20}}>
             

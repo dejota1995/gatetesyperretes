@@ -1,10 +1,11 @@
 import React from "react";
-import {View , StyleSheet , Text,ImageBackground} from "react-native";
+import {TouchableOpacity, View , StyleSheet , Text,ImageBackground} from "react-native";
 import Papo from "../assets/Papo.svg";
 
-export default function TarjetaMascota({mascota}) {
+export default function TarjetaMascota({mascota,navigation}) {
+
     return (
-        <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.navigate('Mascota' , mascota)} style={styles.container}>
             <ImageBackground style={styles.image} source={{uri:mascota.petPicture}}>
             <View style={styles.dogInfo}>
             <Text style={styles.text}>{mascota.name}</Text>
@@ -12,7 +13,7 @@ export default function TarjetaMascota({mascota}) {
             </View>
             </ImageBackground>
             
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -28,7 +29,9 @@ const styles = StyleSheet.create({
         backgroundColor:"red",
         borderRadius:16,
         position:"relative",
-        marginRight:40,
+        marginRight:10,
+        marginLeft:10,
+        marginBottom:25,
         overflow:"hidden"
     },
     picture: {
