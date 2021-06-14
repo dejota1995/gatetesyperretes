@@ -1,11 +1,34 @@
 import {Alert,ScrollView,Text,StyleSheet,View,ImageBackground,TouchableOpacity} from "react-native";
-import React from "react";
+import React , {useEffect,useState} from "react";
 import IconoRaza from "../assets/raza.svg";
 import IconoEdad from "../assets/edad.svg";
 import TarjetaPersonalidad from "../componentes/tarjetaPersonalidad";
 import BotonFav from "../componentes/BotonFav";
 import CustomButton from "../componentes/CustomButton";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Mascota({route}) {
+    const [liked,setLiked] = useState('notliked')
+    useEffect(() => {
+        async function getPets() {
+            let pets = await AsyncStorage.getItem('@usrpets')
+            let formated;
+            if(pets) {
+                pets = JSON.parse(pets)
+                formated = pets.map(pet => {
+                    return {
+                        ...pet.mascota
+                    }
+                })
+                
+            }
+             if(formated.filter(pet => pet.name === route?.params.name).length > 0) {
+                setLiked('liked')
+             }
+             const filtered = formated.filter(pet => pet.name === route?.params.name)
+             console.log(filtered)  
+        }
+        getPets()
+    })
     const {name, race, type, petPicture, age, description, personality,owner} = route?.params
     return (
         <ScrollView style={styles.container}>
@@ -15,7 +38,7 @@ export default function Mascota({route}) {
            <View style={styles.infoContainer}>
                <View style={{flexDirection:'row',justifyContent:"space-between",paddingBottom:10}}>
                    <Text style={styles.petName}>{name ?? 'None'}</Text>
-                   <BotonFav/>
+                   <BotonFav liked={liked} mascota={{name,race,type,petPicture,age,description,personality,owner}}/>
                </View>
                <View style={{flexDirection:'row'}}>
                     <View style={{flexDirection:'row',alignItems:'center',marginRight:135}}>

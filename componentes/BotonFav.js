@@ -1,18 +1,47 @@
 import React , {useState} from "react";
 import {StyleSheet,TouchableOpacity} from "react-native";
 import FavUncolored from "../assets/favuncolored.svg";
-import FavColored from "../assets/favcolored.svg"
-export default function BotonFav() {
-    const [isLiked,setLike] = useState(false)
-    const giveLike = () => {
-        if(!isLiked) {
-            setLike(true)
+import FavColored from "../assets/favcolored.svg";
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+export default function BotonFav(mascota,liked) {
+    const [isLiked,setLike] = useState(liked)
+    const giveLike = async () => {
+        if(isLiked !== 'liked') {
+            try {
+                let pets = await AsyncStorage.getItem('@usrpets')
+                if(pets) {
+                   pets = JSON.parse(pets)
+                } else {
+                    console.log('we got no data')
+                }
+                let full_items = [mascota];
+                if(pets) {
+                    full_items = [...pets,mascota]
+                }
+                AsyncStorage.setItem('@usrpets' , JSON.stringify(full_items))
+                .then(() => {
+                    console.log('añadido correctamente')
+                  
+                    
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+               
+            } catch (error) {
+                console.log(error)
+            }
+           
+            setLike('liked')
+        } else {
+            alert('Ya likeado')
         }
     }
     return (
     <TouchableOpacity onPress={giveLike} style={styles.likeButton}>
         {
-            isLiked 
+            isLiked === 'liked'
             ? 
             <FavColored style={{marginTop:6,marginLeft:3}}/>
             :

@@ -52,6 +52,9 @@ export default function InicioSesion({navigation}) {
             <Text style={{marginTop:20}}>
                 <Text onPress={() => navigation.navigate("Mascota")} style={{color: "green"}}>vete a Mascota</Text>
             </Text>
+            <Text style={{marginTop:20}}>
+                <Text onPress={() => navigation.navigate("Favoritos")} style={{color: "green"}}>vete a Favoritos</Text>
+            </Text>
         </View>
 
     )

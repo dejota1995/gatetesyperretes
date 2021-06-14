@@ -3,37 +3,36 @@ import {Text,ScrollView,StyleSheet,Image} from "react-native";
 import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const {firebase,db} = Fire;
 
-function getPets() {
-    const pets = []
-    db.collection("pets").onSnapshot(querySnapshot => {
-        querySnapshot.forEach(doc => {
-            const {name,race,type,petPicture,age,description,personality,owner} = doc.data()
-            pets.push({
-                id:doc.id,
-                name,
-                race,
-                type,
-                petPicture,
-                age,
-                description,
-                personality,
-                owner: owner ?? owner
-            })
+async function getPets() {
+    let pets = await AsyncStorage.getItem('@usrpets')
+    let formated;
+    if(pets) {
+        pets = JSON.parse(pets)
+        formated = pets.map(pet => {
+            return {
+                ...pet.mascota
+            }
         })
-    })
-    return pets
+        
+    }
+    return formated
 }
 
-export default function Home({navigation}) {
+export default function Favoritos({navigation}) {
     const [pets,setPets] = useState([])
     useEffect(() => {
-        const Pets = getPets()
-        setPets(Pets)
+        const getPetsAsync = async () => {
+            const Pets = await getPets()
+            setPets(Pets)
+            console.log(Pets)
+        }
+        getPetsAsync(); 
+        
     }, [selected])
     const [selected,doSelection] = useState("Gatos")
  
