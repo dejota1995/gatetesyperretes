@@ -9,6 +9,7 @@ import Home from "./paginas/Home";
 import CrearMascota from "./paginas/CrearMascota";
 import Mascota from "./paginas/Mascota";
 import Favoritos from "./paginas/Favoritos";
+//import {} from "@ant-design/icons";
 const Stack = createStackNavigator();
 export default function App() {
   return (
@@ -38,8 +39,11 @@ export default function App() {
           name="Favoritos"
           component={Favoritos}
         ></Stack.Screen>
+     
       </Stack.Navigator>
+      <View style={styles.bottomNav}>
 
+      </View>
     </NavigationContainer>
 
   );
@@ -52,4 +56,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bottomNav: {
+    height:40,
+    backgroundColor:"red"
+  }
 });

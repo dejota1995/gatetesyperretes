@@ -1,9 +1,8 @@
 import React , {useEffect,useState} from "react";
-import {Text,ScrollView,StyleSheet,Image} from "react-native";
+import {Text,ScrollView,StyleSheet,Image,TouchableOpacity} from "react-native";
 import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
-
 
 
 const {firebase,db} = Fire;
@@ -40,7 +39,8 @@ export default function Home({navigation}) {
     const setActive = (mascota) => doSelection(mascota)
 
     return (
-    <ScrollView style={{paddingLeft:24,paddingRight:24 , backgroundColor:"#FEC7D7"}}>
+    <ScrollView style={{paddingLeft:24,paddingRight:24 , backgroundColor:"#FEC7D7",position:"relative"}}>
+         
     <Text style={{
         ...styles.title,
         color: "#0E172C"
@@ -52,7 +52,8 @@ export default function Home({navigation}) {
             selected === "Gatos" ? pets.filter(pet => pet.type.item === 'Gato') : pets.filter(pet => pet.type.item === 'Perro')
         }/>
     }
-    
+
+     
     </ScrollView>
    
     )
@@ -63,5 +64,6 @@ const styles = StyleSheet.create({
         fontSize:24,
         fontWeight:"bold",
         marginTop:40
-    }
+    },
+ 
 })
