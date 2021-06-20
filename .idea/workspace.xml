@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c450cdb4-1d75-4f1d-b8e1-0c8ad9236eb9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/componentes/BotonFav.js" beforeDir="false" afterPath="$PROJECT_DIR$/componentes/BotonFav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/localStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/localStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/useAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useAuth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginas/Favoritos.js" beforeDir="false" afterPath="$PROJECT_DIR$/paginas/Favoritos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginas/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/paginas/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginas/InicioSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/paginas/InicioSesion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paginas/Mascota.js" beforeDir="false" afterPath="$PROJECT_DIR$/paginas/Mascota.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +38,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1624148034942">
+    <state x="92" y="92" width="1736" height="856" key="AVDManager" timestamp="1624221292633">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624148034942" />
+    <state x="92" y="92" width="1736" height="856" key="AVDManager/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1624221292633" />
   </component>
 </project>
