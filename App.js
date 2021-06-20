@@ -18,7 +18,9 @@ export default function App() {
   const navigationRef = useRef(null)
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator>
+      <Stack.Navigator  screenOptions={{
+    headerShown: false
+  }}>
         <Stack.Screen
           name="InicioDeSesión"
           component={InicioSesion}
@@ -49,14 +51,12 @@ export default function App() {
           <TouchableOpacity onPress={() => navigationRef.current?.navigate('Home')}>
               <HomeSvg/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.add} onPress={() => navigationRef.current?.navigate('Favoritos')}>
+          <TouchableOpacity style={styles.add} onPress={() => navigationRef.current?.navigate('CrearMascota')}>
               <Text style={{fontSize:30}}>+</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigationRef.current?.navigate('Favoritos')}>
               <FavSvg/>
           </TouchableOpacity>
-        
-     
       </View>
     </NavigationContainer>
 

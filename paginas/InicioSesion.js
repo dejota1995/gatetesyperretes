@@ -10,7 +10,6 @@ const {firebase} = Fire
 export default function InicioSesion({navigation}) {
    const [email,setEmail] = useState("")
    const [password,setPassword] = useState("")
-   const [auth,usrEmail] = useAuth(navigation)
 
     const IniciarSesion = () => {
         if(email.length < 1 || password.length < 1 ) {
@@ -35,14 +34,9 @@ export default function InicioSesion({navigation}) {
     }
     return (
         <View style={styles.container}>
-            
-            {
-                auth ? <React.Fragment>
-                    <Text>hola {usrEmail}</Text>
-                </React.Fragment>
-                :
-                <React.Fragment>
-                    <Text style={styles.title}>Inicia sesión</Text>
+         
+             
+            <Text style={styles.title}>Inicia sesión</Text>
             <TextInput placeholder="ejemplo@gmail.com" text={email} onChangeText={setEmail} nombre="Correo"></TextInput>
             <TextInput secureTextEntry placeholder="*****" text={password} onChangeText={setPassword} nombre="Contraseña"></TextInput>
             <CustomButton onPress={IniciarSesion} label="Entrar" moreStyles={
@@ -51,9 +45,7 @@ export default function InicioSesion({navigation}) {
             <Text style={{marginTop:20}}>
                 ¿Aún no tienes cuenta? <Text onPress={() => navigation.navigate("Registro")} style={{color: "red"}}>Registrate</Text>
             </Text>
-                </React.Fragment>
-            }
-            
+  
         </View>
 
     )
@@ -64,6 +56,7 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:"column",
         alignItems:"center",
+        marginTop:30
         
     },
     title: {

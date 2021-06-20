@@ -50,7 +50,7 @@ export default function Mascota({route}) {
                 <View style={{marginTop:25,flexDirection:'row',paddingBottom:20,justifyContent:'space-between'}}>
                     <View>
                         <Text style={{fontSize:14}}>Publicado por</Text>
-                        <Text style={{fontSize:18,fontWeight:'bold'}}>Maria Dolores</Text>
+                        <Text style={{fontSize:18,fontWeight:'bold'}}>María Dolores</Text>
                     </View>
                     <CustomButton onPress={() => Linking.openURL('mailto:?subject=Adopción&Body=')} moreStyles={{width:155,height:48}} label="Contactar" />
                 </View>

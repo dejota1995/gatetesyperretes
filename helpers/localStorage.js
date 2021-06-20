@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const key = "myfavpetsv5"
+const key = "myfavpetsv6"
 
 export async function pullFromStorage() {
     let result = await AsyncStorage.getItem(key)

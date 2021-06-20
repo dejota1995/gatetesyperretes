@@ -11,7 +11,7 @@ import {askCameraPermissions,pickImage,uploadImage} from "../helpers/upload";
 const {db,firebase} = Fire;
 
 export default function CrearMascota({navigation}) {
-    const [isAuth,email] = useAuth();
+    const [isAuth,email] = useAuth(navigation);
     //
     const [name, setName] = useState("")
     const [race, setRace] = useState("")

@@ -26,7 +26,7 @@ export default function Favoritos({navigation}) {
     <Text style={{
         ...styles.title,
         color: "#0E172C"
-        }}>Adopta una adorable mascota</Text> 
+        }}>Tus favoritos</Text> 
     <Categorias changePet={setActive} current={selected}/>
     {
         pets && 
