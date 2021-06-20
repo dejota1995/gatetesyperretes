@@ -4,7 +4,6 @@ import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
 
-
 const {firebase,db} = Fire;
 
 function getPets() {

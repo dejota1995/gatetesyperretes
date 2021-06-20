@@ -4,10 +4,7 @@ import Fire from "../database/fire";
 import Categorias from "../componentes/Categorias";
 import TarjetasMascotas from "../componentes/TarjetasMascotas";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {pullFromStorage} from "../helpers/localStorage";
-
-
 
 export default function Favoritos({navigation}) {
 

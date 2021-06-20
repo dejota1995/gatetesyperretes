@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from "react";
 import firebase from "firebase";
 
-export default function useAuth() {
+export default function useAuth(navigation) {
  const [isAuth,setAuth] = useState(false)
  const [email,setEmail] = useState("")
  useEffect(() => {

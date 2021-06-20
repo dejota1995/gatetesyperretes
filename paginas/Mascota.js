@@ -6,6 +6,7 @@ import TarjetaPersonalidad from "../componentes/tarjetaPersonalidad";
 import BotonFav from "../componentes/BotonFav";
 import CustomButton from "../componentes/CustomButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function Mascota({route}) {
     const {name, race, type, petPicture, age, description, personality,owner} = route?.params
     return (

@@ -2,10 +2,7 @@ import React , {useState,useEffect} from "react";
 import {StyleSheet,TouchableOpacity,Alert} from "react-native";
 import FavUncolored from "../assets/favuncolored.svg";
 import FavColored from "../assets/favcolored.svg";
-
 import {uploadToStorage,pullFromStorage,isLiked} from "../helpers/localStorage";
-
-
 
 export default function BotonFav(props) {
     const [wasLiked,setWasLiked] = useState(false)

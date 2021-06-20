@@ -3,12 +3,14 @@ import {Text,View, StyleSheet} from "react-native";
 import CustomButton from "../componentes/CustomButton";
 import TextInput from "../componentes/TextInput";
 import Fire from "../database/fire";
+import useAuth from "../hooks/useAuth"
 
 const {firebase} = Fire
 
 export default function InicioSesion({navigation}) {
    const [email,setEmail] = useState("")
    const [password,setPassword] = useState("")
+   const [auth,usrEmail] = useAuth(navigation)
 
     const IniciarSesion = () => {
         if(email.length < 1 || password.length < 1 ) {
@@ -33,8 +35,14 @@ export default function InicioSesion({navigation}) {
     }
     return (
         <View style={styles.container}>
-
-            <Text style={styles.title}>Inicia sesión</Text>
+            
+            {
+                auth ? <React.Fragment>
+                    <Text>hola {usrEmail}</Text>
+                </React.Fragment>
+                :
+                <React.Fragment>
+                    <Text style={styles.title}>Inicia sesión</Text>
             <TextInput placeholder="ejemplo@gmail.com" text={email} onChangeText={setEmail} nombre="Correo"></TextInput>
             <TextInput secureTextEntry placeholder="*****" text={password} onChangeText={setPassword} nombre="Contraseña"></TextInput>
             <CustomButton onPress={IniciarSesion} label="Entrar" moreStyles={
@@ -43,18 +51,9 @@ export default function InicioSesion({navigation}) {
             <Text style={{marginTop:20}}>
                 ¿Aún no tienes cuenta? <Text onPress={() => navigation.navigate("Registro")} style={{color: "red"}}>Registrate</Text>
             </Text>
-            <Text style={{marginTop:20}}>
-                <Text onPress={() => navigation.navigate("Home")} style={{color: "green"}}>vete a adios</Text>
-            </Text>
-            <Text style={{marginTop:20}}>
-                <Text onPress={() => navigation.navigate("CrearMascota")} style={{color: "green"}}>vete a crearMascota</Text>
-            </Text>
-            <Text style={{marginTop:20}}>
-                <Text onPress={() => navigation.navigate("Mascota")} style={{color: "green"}}>vete a Mascota</Text>
-            </Text>
-            <Text style={{marginTop:20}}>
-                <Text onPress={() => navigation.navigate("Favoritos")} style={{color: "green"}}>vete a Favoritos</Text>
-            </Text>
+                </React.Fragment>
+            }
+            
         </View>
 
     )
